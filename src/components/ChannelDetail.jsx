@@ -12,8 +12,6 @@ const ChannelDetail = () => {
 
 
   useEffect (() => {
-    fetchFromAPI(`channels?part=snippet&id=${id}`).then((data) => setChannelDetail(data?.items[0]))
-
     fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`).then((data) => setVideos(data?.items))
   }, [id])
 
@@ -33,7 +31,7 @@ const ChannelDetail = () => {
           zIndex: 10,
           height: '120px'
         }}/>
-        <ChannelCard color='#000' subColor="gray" channelDetail={channelDetail}
+        <ChannelCard color='#000' subColor="gray" channelId={id}
         marginTop='-110px' />
       </Box>
       <Box

@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
 import { Typography, Box, Card, CardContent, CardMedia } from '@mui/material'
 import { CheckCircle } from '@mui/icons-material'
+import { fetchFromAPI } from './utils/fetchFromAPI'
 import { demoProfilePicture } from './utils/constants'
+import { useState } from 'react'
 
 
-const ChannelCard = ({ channelDetail, marginTop = 0, color = "#000", subColor = "gray" }) => {
+const ChannelCard = ({ channelId, marginTop = 0, color = "#000", subColor = "gray" }) => {
+const [channelDetail, setChannelDetail] = useState(null)
+
+fetchFromAPI(`channels?part=snippet&id=${channelId}`).then((data) => setChannelDetail(data?.items[0]))
 
   return (
     <Box
